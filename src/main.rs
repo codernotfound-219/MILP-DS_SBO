@@ -123,11 +123,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         total_weighted_tardiness
     );
 
+    // Create a mapping of used batches to consecutive numbers
+    let mut used_batches: Vec<usize> = (0..num_batches)
+        .filter(|&b| (0..num_jobs).any(|j| solution.value(x_var(j, b)) > 0.5))
+        .collect();
+    used_batches.sort_by_key(|&b| solution.value(batch_rt[b]) as i32);
+
+    // Create a mapping from original batch index to new consecutive batch number
+    let batch_mapping: std::collections::HashMap<usize, usize> = used_batches
+        .iter()
+        .enumerate()
+        .map(|(new_idx, &original_idx)| (original_idx, new_idx + 1))
+        .collect();
+
     println!("\nJob assignments:");
     for j in 0..num_jobs {
         for b in 0..num_batches {
             if solution.value(x_var(j, b)) > 0.5 {
-                println!("Job {} (J{}) assigned to Batch {}", j + 1, j + 1, b + 1);
+                let new_batch_num = batch_mapping[&b];
+                println!("Job {} (J{}) assigned to Batch {}", j + 1, j + 1, new_batch_num);
                 println!("  - Release Date: {}", jobs[j].release_date);
                 println!("  - Processing Time: {}", jobs[j].processing_time);
                 println!("  - Due Date: {}", jobs[j].due_date);
@@ -141,21 +155,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     println!("Batch details:");
-    for b in 0..num_batches {
-        let batch_has_jobs = (0..num_jobs).any(|j| solution.value(x_var(j, b)) > 0.5);
-        if batch_has_jobs {
-            println!("Batch {}:", b + 1);
-            println!("  - Release Time: {:.2}", solution.value(batch_rt[b]));
-            println!("  - Processing Time: {:.2}", solution.value(batch_pt[b]));
-            println!("  - Completion Time: {:.2}", solution.value(batch_ct[b]));
+    for (batch_idx, &original_batch) in used_batches.iter().enumerate() {
+        let new_batch_num = batch_idx + 1;
+        let jobs_in_batch: Vec<usize> = (0..num_jobs)
+            .filter(|&j| solution.value(x_var(j, original_batch)) > 0.5)
+            .collect();
 
-            let total_size: f64 = (0..num_jobs)
-                .filter(|&j| solution.value(x_var(j, b)) > 0.5)
-                .map(|j| jobs[j].size as f64)
-                .sum();
-            println!("  - Total Size: {:.2}/{:.2}", total_size, capacity);
-            println!();
-        }
+        println!("Batch {}:", new_batch_num);
+        println!("  - Release Time: {:.2}", solution.value(batch_rt[original_batch]));
+        println!("  - Processing Time: {:.2}", solution.value(batch_pt[original_batch]));
+        println!("  - Completion Time: {:.2}", solution.value(batch_ct[original_batch]));
+
+        let total_size: f64 = jobs_in_batch
+            .iter()
+            .map(|&j| jobs[j].size as f64)
+            .sum();
+        println!("  - Total Size: {:.2}/{:.2}", total_size, capacity);
+        
+        // List the jobs in this batch
+        let job_codes: Vec<String> = jobs_in_batch
+            .iter()
+            .map(|&j| format!("J{}", j + 1))
+            .collect();
+        println!("  - Jobs in Batch: {}", job_codes.join(", "));
+        println!();
     }
 
     Ok(())

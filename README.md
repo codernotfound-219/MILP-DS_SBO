@@ -80,10 +80,11 @@ cargo run
 ```
 
 This will solve the predefined 10-job batch scheduling problem with the following output:
+
 - Objective value (total weighted tardiness)
-- Job assignments to batches
+- Job assignments to batches (with consecutive batch numbering)
 - Detailed job information (release dates, processing times, due dates, etc.)
-- Batch utilization and timing information
+- Batch utilization and timing information with job codes listed
 
 ### Example Output
 
@@ -113,6 +114,7 @@ Batch 1:
   - Processing Time: 9.00
   - Completion Time: 10.00
   - Total Size: 9.00/20.00
+  - Jobs in Batch: J1, J3, J5
 ```
 
 ### Customizing Problems
