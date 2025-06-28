@@ -1,13 +1,16 @@
 use good_lp::*;
 use milp_ds_sbo::problem::*;
 
+use std::time::Instant;
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let start = Instant::now();
     // Job data from the table
-    let jobs = problem1();
+    let jobs = problem3();
+    let capacity = PROBLEM3_CAPACITY as f64;
 
     let num_jobs = jobs.len();
     let num_batches = num_jobs; // Maximum possible batches
-    let capacity = PROBLEM1_CAPACITY as f64;
     let m = 1000.0; // Big M value (reduced for numerical stability)
 
     println!("Setting up batch scheduling problem...");
@@ -180,6 +183,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("  - Jobs in Batch: {}", job_codes.join(", "));
         println!();
     }
+    let duration = start.elapsed();
 
+    println!("Processing took: {:?}", duration);
     Ok(())
 }
