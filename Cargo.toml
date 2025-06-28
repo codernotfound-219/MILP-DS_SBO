@@ -1,5 +1,5 @@
 [package]
-name = "milp_rust"
+name = "milp_ds_sbo"
 version = "0.1.0"
 edition = "2021"
 

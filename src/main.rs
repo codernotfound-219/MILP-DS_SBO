@@ -1,5 +1,5 @@
 use good_lp::*;
-use milp_rust::problem::*;
+use milp_ds_sbo::problem::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Job data from the table
@@ -7,7 +7,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let num_jobs = jobs.len();
     let num_batches = num_jobs; // Maximum possible batches
-    let capacity = PROBLEM1_CAPACITY;
+    let capacity = PROBLEM1_CAPACITY as f64;
     let m = 1000.0; // Big M value (reduced for numerical stability)
 
     println!("Setting up batch scheduling problem...");
@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .minimise(
             jobs.iter()
                 .enumerate()
-                .map(|(j, job)| job.lateness_penalty * job_tardiness[j])
+                .map(|(j, job)| job.lateness_penalty as f64 * job_tardiness[j])
                 .sum::<Expression>(),
         )
         .using(highs);
@@ -52,7 +52,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 2. Batch capacity constraint
     for b in 0..num_batches {
-        let constraint: Expression = (0..num_jobs).map(|j| jobs[j].size * x_var(j, b)).sum();
+        let constraint: Expression = (0..num_jobs).map(|j| jobs[j].size as f64 * x_var(j, b)).sum();
         model = model.with(constraint << capacity);
     }
 
@@ -60,7 +60,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for b in 0..num_batches {
         for j in 0..num_jobs {
             // batch_rt[b] >= release_time[j] * x[j][b]
-            let constraint = batch_rt[b] - jobs[j].release_date * x_var(j, b);
+            let constraint = batch_rt[b] - jobs[j].release_date as f64 * x_var(j, b);
             model = model.with(constraint >> 0.0);
         }
     }
@@ -75,7 +75,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for b in 0..num_batches {
         for j in 0..num_jobs {
             // batch_pt[b] >= processing_time[j] * x[j][b]
-            let constraint = batch_pt[b] - jobs[j].processing_time * x_var(j, b);
+            let constraint = batch_pt[b] - jobs[j].processing_time as f64 * x_var(j, b);
             model = model.with(constraint >> 0.0);
         }
     }
@@ -102,7 +102,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 8. Tardiness calculation: tardiness[j] >= completion_time[j] - due_date[j]
     for j in 0..num_jobs {
         let constraint = job_tardiness[j] - job_ct[j];
-        model = model.with(constraint >> -jobs[j].due_date);
+        model = model.with(constraint >> -(jobs[j].due_date as f64));
     }
 
     println!("Solving the optimization problem...");
@@ -116,7 +116,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let total_weighted_tardiness: f64 = jobs
         .iter()
         .enumerate()
-        .map(|(j, job)| solution.value(job_tardiness[j]) * job.lateness_penalty)
+        .map(|(j, job)| solution.value(job_tardiness[j]) * job.lateness_penalty as f64)
         .sum();
     println!(
         "Objective value (total weighted tardiness): {:.2}",
@@ -151,7 +151,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             let total_size: f64 = (0..num_jobs)
                 .filter(|&j| solution.value(x_var(j, b)) > 0.5)
-                .map(|j| jobs[j].size)
+                .map(|j| jobs[j].size as f64)
                 .sum();
             println!("  - Total Size: {:.2}/{:.2}", total_size, capacity);
             println!();

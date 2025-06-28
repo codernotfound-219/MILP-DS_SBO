@@ -1,8 +1,8 @@
 #[derive(Debug)]
 pub struct Job {
-    pub release_date: f64,
-    pub processing_time: f64,
-    pub due_date: f64,
-    pub size: f64,
-    pub lateness_penalty: f64,
+    pub release_date: u32,
+    pub processing_time: u32,
+    pub due_date: u32,
+    pub size: u32,
+    pub lateness_penalty: u32,
 }
