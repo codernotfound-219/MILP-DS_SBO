@@ -1,0 +1,191 @@
+15 job run:
+
+Setting up batch scheduling problem...
+Number of jobs: 15
+Batch capacity: 20
+Solving the optimization problem...
+
+=== SOLUTION ===
+Objective value (total weighted tardiness): 45.00
+
+Job assignments:
+Job 1 (J1) assigned to Batch 5
+  - Release Date: 12
+  - Processing Time: 1
+  - Due Date: 42
+  - Size: 4
+  - Completion Time: 35.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 4
+
+Job 2 (J2) assigned to Batch 6
+  - Release Date: 16
+  - Processing Time: 10
+  - Due Date: 55
+  - Size: 9
+  - Completion Time: 45.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 9
+
+Job 3 (J3) assigned to Batch 4
+  - Release Date: 10
+  - Processing Time: 7
+  - Due Date: 38
+  - Size: 4
+  - Completion Time: 33.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 4
+
+Job 4 (J4) assigned to Batch 4
+  - Release Date: 19
+  - Processing Time: 6
+  - Due Date: 39
+  - Size: 4
+  - Completion Time: 33.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 4
+
+Job 5 (J5) assigned to Batch 2
+  - Release Date: 6
+  - Processing Time: 1
+  - Due Date: 22
+  - Size: 8
+  - Completion Time: 18.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 8
+
+Job 6 (J6) assigned to Batch 1
+  - Release Date: 3
+  - Processing Time: 2
+  - Due Date: 28
+  - Size: 9
+  - Completion Time: 8.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 9
+
+Job 7 (J7) assigned to Batch 2
+  - Release Date: 5
+  - Processing Time: 10
+  - Due Date: 34
+  - Size: 5
+  - Completion Time: 18.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 5
+
+Job 8 (J8) assigned to Batch 3
+  - Release Date: 12
+  - Processing Time: 7
+  - Due Date: 26
+  - Size: 10
+  - Completion Time: 25.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 10
+
+Job 9 (J9) assigned to Batch 3
+  - Release Date: 18
+  - Processing Time: 5
+  - Due Date: 24
+  - Size: 4
+  - Completion Time: 25.00
+  - Tardiness: 1.00
+  - Lateness Penalty: 4
+
+Job 10 (J10) assigned to Batch 5
+  - Release Date: 17
+  - Processing Time: 2
+  - Due Date: 44
+  - Size: 4
+  - Completion Time: 35.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 4
+
+Job 11 (J11) assigned to Batch 1
+  - Release Date: 2
+  - Processing Time: 5
+  - Due Date: 13
+  - Size: 4
+  - Completion Time: 8.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 4
+
+Job 12 (J12) assigned to Batch 6
+  - Release Date: 6
+  - Processing Time: 9
+  - Due Date: 45
+  - Size: 7
+  - Completion Time: 45.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 7
+
+Job 13 (J13) assigned to Batch 4
+  - Release Date: 14
+  - Processing Time: 8
+  - Due Date: 29
+  - Size: 9
+  - Completion Time: 33.00
+  - Tardiness: 4.00
+  - Lateness Penalty: 9
+
+Job 14 (J14) assigned to Batch 3
+  - Release Date: 12
+  - Processing Time: 4
+  - Due Date: 24
+  - Size: 5
+  - Completion Time: 25.00
+  - Tardiness: 1.00
+  - Lateness Penalty: 5
+
+Job 15 (J15) assigned to Batch 2
+  - Release Date: 7
+  - Processing Time: 9
+  - Due Date: 26
+  - Size: 5
+  - Completion Time: 18.00
+  - Tardiness: 0.00
+  - Lateness Penalty: 5
+
+Batch details:
+Batch 1:
+  - Release Time: 3.00
+  - Processing Time: 5.00
+  - Completion Time: 8.00
+  - Total Size: 13.00/20.00
+  - Jobs in Batch: J6, J11
+
+Batch 2:
+  - Release Time: 8.00
+  - Processing Time: 10.00
+  - Completion Time: 18.00
+  - Total Size: 18.00/20.00
+  - Jobs in Batch: J5, J7, J15
+
+Batch 3:
+  - Release Time: 18.00
+  - Processing Time: 7.00
+  - Completion Time: 25.00
+  - Total Size: 19.00/20.00
+  - Jobs in Batch: J8, J9, J14
+
+Batch 4:
+  - Release Time: 25.00
+  - Processing Time: 8.00
+  - Completion Time: 33.00
+  - Total Size: 17.00/20.00
+  - Jobs in Batch: J3, J4, J13
+
+Batch 5:
+  - Release Time: 33.00
+  - Processing Time: 2.00
+  - Completion Time: 35.00
+  - Total Size: 8.00/20.00
+  - Jobs in Batch: J1, J10
+
+Batch 6:
+  - Release Time: 35.00
+  - Processing Time: 10.00
+  - Completion Time: 45.00
+  - Total Size: 16.00/20.00
+  - Jobs in Batch: J2, J12
+
+Processing took: 863.826874125s
+
