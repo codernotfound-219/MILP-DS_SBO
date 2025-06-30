@@ -40,7 +40,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .minimise(
             jobs.iter()
                 .enumerate()
-                .map(|(j, job)| job.lateness_penalty as f64 * job_tardiness[j])
+                .map(|(j, _)| job_tardiness[j])
                 .sum::<Expression>(),
         )
         .using(highs);
@@ -116,14 +116,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Print results
     println!("\n=== SOLUTION ===");
 
-    let total_weighted_tardiness: f64 = jobs
+    let total_tardiness: f64 = jobs
         .iter()
         .enumerate()
-        .map(|(j, job)| solution.value(job_tardiness[j]) * job.lateness_penalty as f64)
+        .map(|(j, _)| solution.value(job_tardiness[j]))
         .sum();
     println!(
-        "Objective value (total weighted tardiness): {:.2}",
-        total_weighted_tardiness
+        "Objective value (total tardiness): {:.2}",
+        total_tardiness
     );
 
     // Create a mapping of used batches to consecutive numbers
@@ -151,7 +151,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 println!("  - Size: {}", jobs[j].size);
                 println!("  - Completion Time: {:.2}", solution.value(job_ct[j]));
                 println!("  - Tardiness: {:.2}", solution.value(job_tardiness[j]));
-                println!("  - Lateness Penalty: {}", jobs[j].lateness_penalty);
                 println!();
             }
         }

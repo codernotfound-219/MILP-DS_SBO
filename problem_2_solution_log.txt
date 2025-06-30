@@ -1,0 +1,181 @@
+Setting up batch scheduling problem...
+Number of jobs: 15
+Batch capacity: 20
+Solving the optimization problem...
+
+=== SOLUTION ===
+Objective value (total tardiness): 2.00
+
+Job assignments:
+Job 1 (J1) assigned to Batch 1
+  - Release Date: 5
+  - Processing Time: 8
+  - Due Date: 28
+  - Size: 8
+  - Completion Time: 13.00
+  - Tardiness: 0.00
+
+Job 2 (J2) assigned to Batch 4
+  - Release Date: 4
+  - Processing Time: 1
+  - Due Date: 21
+  - Size: 7
+  - Completion Time: 21.00
+  - Tardiness: 0.00
+
+Job 3 (J3) assigned to Batch 4
+  - Release Date: 19
+  - Processing Time: 1
+  - Due Date: 19
+  - Size: 8
+  - Completion Time: 21.00
+  - Tardiness: 2.00
+
+Job 4 (J4) assigned to Batch 5
+  - Release Date: 14
+  - Processing Time: 5
+  - Due Date: 39
+  - Size: 6
+  - Completion Time: 26.00
+  - Tardiness: 0.00
+
+Job 5 (J5) assigned to Batch 1
+  - Release Date: 4
+  - Processing Time: 8
+  - Due Date: 41
+  - Size: 8
+  - Completion Time: 13.00
+  - Tardiness: 0.00
+
+Job 6 (J6) assigned to Batch 6
+  - Release Date: 4
+  - Processing Time: 9
+  - Due Date: 39
+  - Size: 9
+  - Completion Time: 35.00
+  - Tardiness: 0.00
+
+Job 7 (J7) assigned to Batch 5
+  - Release Date: 15
+  - Processing Time: 5
+  - Due Date: 42
+  - Size: 9
+  - Completion Time: 26.00
+  - Tardiness: 0.00
+
+Job 8 (J8) assigned to Batch 3
+  - Release Date: 9
+  - Processing Time: 6
+  - Due Date: 21
+  - Size: 6
+  - Completion Time: 20.00
+  - Tardiness: 0.00
+
+Job 9 (J9) assigned to Batch 7
+  - Release Date: 17
+  - Processing Time: 4
+  - Due Date: 39
+  - Size: 9
+  - Completion Time: 39.00
+  - Tardiness: -0.00
+
+Job 10 (J10) assigned to Batch 2
+  - Release Date: 9
+  - Processing Time: 1
+  - Due Date: 19
+  - Size: 7
+  - Completion Time: 14.00
+  - Tardiness: 0.00
+
+Job 11 (J11) assigned to Batch 3
+  - Release Date: 11
+  - Processing Time: 2
+  - Due Date: 22
+  - Size: 5
+  - Completion Time: 20.00
+  - Tardiness: 0.00
+
+Job 12 (J12) assigned to Batch 3
+  - Release Date: 8
+  - Processing Time: 5
+  - Due Date: 24
+  - Size: 8
+  - Completion Time: 20.00
+  - Tardiness: 0.00
+
+Job 13 (J13) assigned to Batch 6
+  - Release Date: 15
+  - Processing Time: 6
+  - Due Date: 40
+  - Size: 6
+  - Completion Time: 35.00
+  - Tardiness: 0.00
+
+Job 14 (J14) assigned to Batch 6
+  - Release Date: 18
+  - Processing Time: 7
+  - Due Date: 38
+  - Size: 5
+  - Completion Time: 35.00
+  - Tardiness: 0.00
+
+Job 15 (J15) assigned to Batch 7
+  - Release Date: 16
+  - Processing Time: 4
+  - Due Date: 41
+  - Size: 6
+  - Completion Time: 39.00
+  - Tardiness: 0.00
+
+Batch details:
+Batch 1:
+  - Release Time: 5.00
+  - Processing Time: 8.00
+  - Completion Time: 13.00
+  - Total Size: 16.00/20.00
+  - Jobs in Batch: J1, J5
+
+Batch 2:
+  - Release Time: 13.00
+  - Processing Time: 1.00
+  - Completion Time: 14.00
+  - Total Size: 7.00/20.00
+  - Jobs in Batch: J10
+
+Batch 3:
+  - Release Time: 14.00
+  - Processing Time: 6.00
+  - Completion Time: 20.00
+  - Total Size: 19.00/20.00
+  - Jobs in Batch: J8, J11, J12
+
+Batch 4:
+  - Release Time: 20.00
+  - Processing Time: 1.00
+  - Completion Time: 21.00
+  - Total Size: 15.00/20.00
+  - Jobs in Batch: J2, J3
+
+Batch 5:
+  - Release Time: 21.00
+  - Processing Time: 5.00
+  - Completion Time: 26.00
+  - Total Size: 15.00/20.00
+  - Jobs in Batch: J4, J7
+
+Batch 6:
+  - Release Time: 26.00
+  - Processing Time: 9.00
+  - Completion Time: 35.00
+  - Total Size: 20.00/20.00
+  - Jobs in Batch: J6, J13, J14
+
+Batch 7:
+  - Release Time: 35.00
+  - Processing Time: 4.00
+  - Completion Time: 39.00
+  - Total Size: 15.00/20.00
+  - Jobs in Batch: J9, J15
+
+Processing took: 2728.255293084s
+
